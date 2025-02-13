@@ -1,4 +1,12 @@
 const runFn = () => {
+
+    const bathroomCounterWrappers = document.querySelectorAll('.bathroom-counter-wrapper')
+
+    bathroomCounterWrappers.forEach(bcw => {
+        const counterText = bcw.querySelector('.bathroom-counter').textContent
+
+        bcw.querySelector('.bathroom-counter-text').textContent = `bathroom${parseInt(counterText) > 1 ? 's' : ''}`
+    })
     // This is for the counter
     const resourceProps = ["accommodation-type", "no-of-bedroom", "funding-type"]
     const codeWrapper = document.querySelector(".code-wrapper")
