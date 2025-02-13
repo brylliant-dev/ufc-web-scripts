@@ -78,25 +78,65 @@ const runFn = () => {
       resetSelectedProp()
     })
   }
+
+
+  // We'll use this function to wait for certain query selectors before we run a callback
+const startObservingElements = ({ selectors, callback }) => {
+    const observer = new MutationObserver((_mutations, obs) => {
+      let foundSelectors = []
   
-  setTimeout(() => {
-    runFn()
+      selectors.forEach((selector) => {
+        // Use jQuery to select the element
+        const element = $(selector)
+        if (element.length > 0 && !foundSelectors.includes(selector)) {
+          // Element exists and is not already in the found list, mark as found
+          foundSelectors.push(selector)
+  
+          // Check if all selectors have been found
+          if (foundSelectors.length === selectors.length) {
+            // All elements are found, run the callback
+            callback()
+  
+            // Disconnect the observer as its job is done
+            obs.disconnect()
+          }
+        }
+      })
+    })
+  
+    observer.observe($('body')[0], {
+      childList: true,
+      subtree: true,
+    })
+  }
+
+  startObservingElements({
+    selectors: [
+        '.pop-out-wrapper',
+      '#Accommodation-Type',
+      '#No-of-Bedroom',
+      '#Funding-Type',
+    ],
+    callback: () => {
+        runFn()
     
-    runCheckBoxToggles({
-      viewAllId: "#Accommodation-Type",
-      ids: [
-        "Accommodation-Type-1",
-        "Accommodation-Type-2"
-      ],
-    })
+        runCheckBoxToggles({
+          viewAllId: "#Accommodation-Type",
+          ids: [
+            "Accommodation-Type-1",
+            "Accommodation-Type-2"
+          ],
+        })
+      
+        runCheckBoxToggles({
+          viewAllId: "#No-of-Bedroom",
+          ids: ["No-of-Bedroom-3", "No-of-Bedroom-4", "No-of-Bedroom-5"],
+        })
+      
+        runCheckBoxToggles({
+          viewAllId: "#Funding-Type",
+          ids: ["Funding-Type-1", "Funding-Type-2", "Funding-Type-3"],
+        })
+    },
+  })
   
-    runCheckBoxToggles({
-      viewAllId: "#No-of-Bedroom",
-      ids: ["No-of-Bedroom-3", "No-of-Bedroom-4", "No-of-Bedroom-5"],
-    })
-  
-    runCheckBoxToggles({
-      viewAllId: "#Funding-Type",
-      ids: ["Funding-Type-1", "Funding-Type-2", "Funding-Type-3"],
-    })
-  }, 500)
