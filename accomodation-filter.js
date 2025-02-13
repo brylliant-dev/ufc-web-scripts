@@ -116,6 +116,14 @@ const startObservingElements = ({ selectors, callback }) => {
       '#Accommodation-Type',
       '#No-of-Bedroom',
       '#Funding-Type',
+      "#Accommodation-Type-1",
+      "#Accommodation-Type-2",
+      "#No-of-Bedroom-3", 
+      "#No-of-Bedroom-4", 
+      "#No-of-Bedroom-5",
+      "#Funding-Type-1", 
+      "#Funding-Type-2", 
+      "#Funding-Type-3"
     ],
     callback: () => {
         runFn()
