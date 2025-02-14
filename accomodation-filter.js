@@ -1,5 +1,6 @@
 const runFn = () => {
 
+  const runPluralBathroom = () => {
     const bathroomCounterWrappers = document.querySelectorAll('.bathroom-counter-wrapper')
 
     bathroomCounterWrappers.forEach(bcw => {
@@ -7,6 +8,7 @@ const runFn = () => {
 
         bcw.querySelector('.bathroom-counter-text').textContent = `bathroom${parseInt(counterText) > 1 ? 's' : ''}`
     })
+  }
 
     // Finsweet Attribute code
     window.fsAttributes = window.fsAttributes || [];
@@ -20,6 +22,7 @@ const runFn = () => {
         listInstance.on('renderitems', (renderedItems) => {
           console.log(renderedItems);
           // Add code that will run each time new items are rendered on the page
+          runPluralBathroom()
         });
       },
     ]);
