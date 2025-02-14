@@ -5,9 +5,9 @@ const runFn = () => {
     )
 
     bathroomCounterWrappers.forEach((bcw) => {
-      const counterText = bcw.querySelector(".bathroom-counter").textContent
+      const labelText = bcw.querySelector(".bathroom-counter")
 
-      const labelText = bcw.querySelector(".bathroom-counter-text")
+      const counterText = bcw.querySelector(".bathroom-counter-text").textContent
 
       labelText.textContent =
         `${labelText.textContent}${parseInt(counterText) > 1 ? "s" : ""}`
