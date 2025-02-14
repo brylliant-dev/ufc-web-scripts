@@ -10,6 +10,8 @@ const runFn = () => {
     })
   }
 
+  runPluralBathroom()
+
     // Finsweet Attribute code
     window.fsAttributes = window.fsAttributes || [];
     window.fsAttributes.push([
