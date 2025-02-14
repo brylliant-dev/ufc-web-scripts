@@ -8,7 +8,7 @@ const runFn = () => {
       const counterText = bcw.querySelector(".bathroom-counter").textContent
 
       bcw.querySelector(".bathroom-counter-text").textContent =
-        `bathroom${parseInt(counterText) > 1 ? "s" : ""}`
+        `Bathroom${parseInt(counterText) > 1 ? "s" : ""}`
     })
   }
 
