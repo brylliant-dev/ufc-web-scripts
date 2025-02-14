@@ -172,7 +172,7 @@ startObservingElements({
 
     runCheckBoxToggles({
       viewAllId: "#Funding-Type",
-      ids: ["Funding-Type-1", "Funding-Type-2", "Funding-Type-3"],
+      ids: ["Funding-Type-1", "Funding-Type-2", "Funding-Type-3", "Funding-Type-4", "Funding-Type-5", "Funding-Type-6"],
     })
   },
 })
