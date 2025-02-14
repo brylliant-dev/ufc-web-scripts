@@ -114,32 +114,33 @@ const runCheckBoxToggles = ({ viewAllId, ids }) => {
 
 // We'll use this function to wait for certain query selectors before we run a callback
 const startObservingElements = ({ selectors, callback }) => {
-  const observer = new MutationObserver((_mutations, obs) => {
-    let foundSelectors = []
-
+  const observer = new MutationObserver((mutations, obs) => {
+    let foundSelectors = [];
+  
     selectors.forEach((selector) => {
-      // Use jQuery to select the element
-      const element = $(selector)
-      if (element.length > 0 && !foundSelectors.includes(selector)) {
+      // Use querySelector to select the element
+      const element = document.querySelector(selector);
+      if (element && !foundSelectors.includes(selector)) {
         // Element exists and is not already in the found list, mark as found
-        foundSelectors.push(selector)
-
+        foundSelectors.push(selector);
+  
         // Check if all selectors have been found
         if (foundSelectors.length === selectors.length) {
           // All elements are found, run the callback
-          callback()
-
+          callback();
+  
           // Disconnect the observer as its job is done
-          obs.disconnect()
+          obs.disconnect();
         }
       }
-    })
-  })
+    });
+  });  
 
-  observer.observe($("body")[0], {
+  observer.observe(document.querySelector("body"), {
     childList: true,
     subtree: true,
-  })
+  });
+  
 }
 
 startObservingElements({
