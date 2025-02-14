@@ -7,6 +7,24 @@ const runFn = () => {
 
         bcw.querySelector('.bathroom-counter-text').textContent = `bathroom${parseInt(counterText) > 1 ? 's' : ''}`
     })
+
+    // Finsweet Attribute code
+    window.fsAttributes = window.fsAttributes || [];
+    window.fsAttributes.push([
+      'cmsload',
+      (listInstances) => {
+        console.log('cmsload Successfully loaded!');
+        // The callback passes a `listInstances` array with all the `CMSList` instances on the page.
+        const [listInstance] = listInstances;
+        // The `renderitems` event runs whenever the list renders items after switching pages.
+        listInstance.on('renderitems', (renderedItems) => {
+          console.log(renderedItems);
+          // Add code that will run each time new items are rendered on the page
+        });
+      },
+    ]);
+    // Finsweet Attribute code
+
     // This is for the counter
     const resourceProps = ["accommodation-type", "no-of-bedroom", "funding-type"]
     const codeWrapper = document.querySelector(".code-wrapper")
