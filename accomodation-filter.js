@@ -96,6 +96,8 @@ const runCheckBoxToggles = ({ viewAllId, ids }) => {
     })
   }
 
+  console.log('Serialized IDs:', serializedIds)
+
   serializedIds.forEach((id) => {
     const checkbox = document.querySelector(`#${id}`)
     const parent = checkbox.parentElement
